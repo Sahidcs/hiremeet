@@ -22,7 +22,9 @@ function CodeEditor() {
   const fetchQuestion = async (sourceType: SourceType) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/${sourceType}`);
+      const res = await fetch(`/api/${sourceType}`, {
+  cache: "no-store",
+});
       const data = await res.json();
       setSelectedQuestion(data);
       if (sourceType === "leetcode") {

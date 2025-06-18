@@ -277,8 +277,14 @@ const leetcodeQuestions = [
 },
 ];
 
-
 export async function GET() {
   const random = leetcodeQuestions[Math.floor(Math.random() * leetcodeQuestions.length)];
-  return NextResponse.json(random);
+
+  return new NextResponse(JSON.stringify(random), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store", // 👈 prevent caching in Vercel
+    },
+  });
 }
