@@ -1,9 +1,9 @@
 // src/app/api/leetcode/route.ts
 
 import { NextResponse } from "next/server";
-
-// Import your question dataset (adjust the path if needed)
 import { leetcodeQuestions } from "@/data/leetcodeQuestions";
+
+export const dynamic = "force-dynamic"; // 👈 important for Vercel
 
 export async function GET() {
   const random = leetcodeQuestions[Math.floor(Math.random() * leetcodeQuestions.length)];
@@ -12,7 +12,7 @@ export async function GET() {
     status: 200,
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "no-store", // 🚫 prevents caching so each request gives a new question
+      "Cache-Control": "no-store",
     },
   });
 }
